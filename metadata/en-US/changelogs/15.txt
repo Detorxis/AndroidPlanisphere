@@ -1,0 +1,4 @@
+- Allow to adjust viewing direction from 'Settings' dialog.
+- Norwegian translation update (FTno).
+- Show Sun position in object details dialog.
+- Fixed: Reset volume button time offset in 'Date / Time' settings.
