@@ -454,6 +454,17 @@ public class MainActivity extends AppCompatActivity
         }
         else if (chartObject.getType() == ObjectType.SUN)
         {
+            Sun s = ((Sun) chartObject);
+            keys.add(getString(R.string.geo_ecliptic_lat));
+            values.add(String.format(Locale.getDefault(), "%.4f°", 0.0));
+            keys.add(getString(R.string.geo_ecliptic_lon));
+            values.add(String.format(Locale.getDefault(), "%.4f°", s.mEcliptic_lon));
+            keys.add(getString(R.string.distance_earth));
+            values.add(String.format(Locale.getDefault(), "%.4f AU", 1.0));
+            keys.add(getString(R.string.RA));
+            values.add(String.format(Locale.getDefault(), "%.4f°", s.mRa));
+            keys.add(getString(R.string.DEC));
+            values.add(String.format(Locale.getDefault(), "%.4f°", s.mDeclination));
             keys.add(getString(R.string.riseUtc));
             values.add(mEngine.calcRiseSetSun(false, RiseSetType.RISE));
             keys.add(getString(R.string.setUtc));

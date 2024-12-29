@@ -367,11 +367,19 @@ class Sun extends RoundObject
     public static int sColor;
     public static int sTextColor;
     public static final String sWikidataId = "Q525";
+    public double mRa;
+    public double mDeclination;
+    public double mEcliptic_lon;
 
     public Sun(Engine e, boolean showName)
     {
         super(e);
-        double[] raDec = Astro.calcPositionSun(Astro.julian_date(mEngine.getTime()));
+        double[] latLonDist = Astro.calcPositionSunEcliptic(
+            Astro.julian_date(mEngine.getTime()));
+        mEcliptic_lon = latLonDist[1];
+        double[] raDec = Astro.geoEcl2geoEqua(latLonDist[0], latLonDist[1]);
+        mRa = raDec[0];
+        mDeclination = raDec[1];
         mAzEle = mEngine.equatorial2horizontal(raDec[0] / 15, raDec[1]);
         mApparentMagnitude = -26.74;
         mText = Settings.instance().translateName("Sun");
