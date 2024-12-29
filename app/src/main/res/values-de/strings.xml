@@ -108,6 +108,7 @@
     <string name="nextFullMoon">Nächster Vollmond</string>
     <string name="nextNewMoon">Nächster Neumond</string>
     <string name="adjustTimeVolume">Uhrzeit mit Lautstärketasten einstellen</string>
+    <string name="viewDirection">Blickrichtung (0° Süden; 90° Osten; 180° Norden):</string>
 
     <string name="about_text"><![CDATA[
 <h1>Planisphäre</h1>

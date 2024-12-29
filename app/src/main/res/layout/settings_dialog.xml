@@ -52,4 +52,16 @@
             android:hint="@string/textScalingHint"/>
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/viewDirection" />
+    <EditText
+        android:id="@+id/viewDirection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        tools:ignore="Autofill"
+        android:hint="0"/>
+
 </LinearLayout>

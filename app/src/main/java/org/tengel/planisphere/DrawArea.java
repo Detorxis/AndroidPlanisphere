@@ -43,6 +43,8 @@ public class DrawArea extends View
     private double mScrollMax = 0;
     private int mContentWidth = 0;
     private int mContentHeight = 0;
+    private Settings mSettings;
+    private int mRotate = 0;
 
     private static final int BORDER = 10;
     private static final double SCALE_FACTOR_MAX = 100.0;
@@ -80,6 +82,7 @@ public class DrawArea extends View
         mSize = Math.min(mContentWidth, mContentHeight) - (2 * BORDER);
         mScrollMin = (mSize / -2.0) * mScaleFactor;
         mScrollMax = (mSize / 2.0) * mScaleFactor;
+        mRotate = mSettings.getViewDirection();
         if (mObjects != null)
         {
             for (ChartObject co : mObjects)
@@ -102,7 +105,7 @@ public class DrawArea extends View
     public int[] horizontal2area(double azimuth, double elevation)
     {
         double hpixel = (mSize * mScaleFactor) / 2.0 / 90.0;
-        double azimuthRad = Math.toRadians(azimuth);
+        double azimuthRad = Math.toRadians(azimuth + mRotate);
         double xoff = Math.sin(azimuthRad) * (90 - elevation) * hpixel;
         double yoff = Math.cos(azimuthRad) * (90 - elevation) * hpixel;
         int x = (int) ((mContentWidth / 2.0) + xoff - mScrollOffsetX);
@@ -161,9 +164,10 @@ public class DrawArea extends View
         }
     }
 
-    public void setMainActivity(MainActivity m)
+    public void setMainActivity(MainActivity m, Settings s)
     {
         mMainActivity = m;
+        mSettings = s;
     }
 
     @Override

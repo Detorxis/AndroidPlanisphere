@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity
 
             mDrawArea = findViewById(R.id.drawArea);
             mDrawArea.setActionBar(getSupportActionBar());
-            mDrawArea.setMainActivity(this);
+            mDrawArea.setMainActivity(this, mSettings);
             LocationHandler.init(this);
             mLocHandler = LocationHandler.instance();
 

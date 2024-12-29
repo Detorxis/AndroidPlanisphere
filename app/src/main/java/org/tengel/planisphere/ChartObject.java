@@ -22,6 +22,7 @@ import android.graphics.Paint;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.lang.Math;
 
 enum ObjectType {STAR, PLANET, SUN, MOON, OTHER}
 
@@ -155,7 +156,10 @@ class AzGrid extends ChartObject
         {
             pxy  = da.horizontal2area(0, ele);
             pxyText  = da.horizontal2area(22.5, ele);
-            canvas.drawCircle(center[0], center[1], (pxy[1] - center[1]), mPaint);
+            float radius = (float) Math.sqrt(
+                (pxy[1] - center[1]) * (pxy[1] - center[1]) +
+                (pxy[0] - center[0]) * (pxy[0] - center[0]));
+            canvas.drawCircle(center[0], center[1], radius, mPaint);
             canvas.drawText(Integer.valueOf(ele) + "°", pxyText[0], pxyText[1] - mAlignY, mPaintText);
         }
     }
@@ -187,18 +191,30 @@ class Horizon extends ChartObject
     {
         int[] center = da.horizontal2area(0, 90);
         int[] south = da.horizontal2area(0, 0);
-        canvas.drawCircle(center[0], center[1], (south[1] - center[1]), mPaint);
+        float radius = (float) Math.sqrt(
+            (south[1] - center[1]) * (south[1] - center[1]) +
+            (south[0] - center[0]) * (south[0] - center[0]));
+        canvas.drawCircle(center[0], center[1], radius, mPaint);
         int[] west  = da.horizontal2area(90, 0);
         int[] north = da.horizontal2area(180, 0);
         int[] east  = da.horizontal2area(270, 0);
+        double rotateRad = Math.toRadians(Settings.instance().getViewDirection());
+        int xOffS = (int) (2 * mH * Math.sin(rotateRad));
+        int xOffW = (int) (2 * mH * Math.sin(rotateRad + Math.PI / 2));
+        int xOffN = (int) (2 * mH * Math.sin(rotateRad + Math.PI));
+        int xOffE = (int) (2 * mH * Math.sin(rotateRad + Math.PI / 2 * 3));
+        int yOffS = (int) (mAlignY + 2 * mH * Math.cos(rotateRad));
+        int yOffW = (int) (mAlignY + 2 * mH * Math.cos(rotateRad + Math.PI / 2));
+        int yOffN = (int) (mAlignY + 2 * mH * Math.cos(rotateRad + Math.PI));
+        int yOffE = (int) (mAlignY + 2 * mH * Math.cos(rotateRad + Math.PI / 2 * 3));
         canvas.drawText(da.getContext().getString(R.string.direction_s),
-                        south[0], south[1] - mH * 2, mPaintText);
+                        south[0] - xOffS, south[1] - yOffS, mPaintText);
         canvas.drawText(da.getContext().getString(R.string.direction_w),
-                        west[0] - mH * 2, west[1] - mAlignY, mPaintText);
+                        west[0] - xOffW, west[1] - yOffW, mPaintText);
         canvas.drawText(da.getContext().getString(R.string.direction_n),
-                        north[0], north[1] + mH, mPaintText);
+                        north[0] - xOffN, north[1] - yOffN, mPaintText);
         canvas.drawText(da.getContext().getString(R.string.direction_e),
-                        east[0] + mH * 2, east[1] - mAlignY, mPaintText);
+                        east[0] - xOffE, east[1] - yOffE, mPaintText);
     }
 }
 

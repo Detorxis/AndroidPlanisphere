@@ -60,15 +60,26 @@ public class SettingsDialog extends DialogFragment
         final EditText fontScale = (EditText) view.findViewById(R.id.fontScale);
         fontScale.setText(String.valueOf(Settings.instance().getFontScale()));
 
-        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+        final EditText viewDir = (EditText) view.findViewById(R.id.viewDirection);
+        viewDir.setText(String.valueOf(Settings.instance().getViewDirection()));
+
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener()
+        {
             @Override
             public void onClick(DialogInterface dialog, int id)
             {
-                Settings.instance().setConstLanguage(langSpinner.getSelectedItemPosition());
-                Settings.instance().setKeepScreenOn(keepScreen.isChecked());
-                Settings.instance().setOnlyVisiblePlanets(visiblePlanets.isChecked());
-                Settings.instance().setFontScale(Float.valueOf(fontScale.getText().toString()));
-                Settings.instance().setAdjustTimeVolume(adjustTime.isChecked());
+                Settings s = Settings.instance();
+                s.setConstLanguage(langSpinner.getSelectedItemPosition());
+                s.setKeepScreenOn(keepScreen.isChecked());
+                s.setOnlyVisiblePlanets(visiblePlanets.isChecked());
+                s.setFontScale(Float.valueOf(fontScale.getText().toString()));
+                s.setAdjustTimeVolume(adjustTime.isChecked());
+                int viewDirection = 0;
+                if (viewDir.getText().length() > 0)
+                {
+                    viewDirection = Integer.valueOf(viewDir.getText().toString());
+                }
+                s.setViewDirection(viewDirection);
                 mListener.update();
             }
         });

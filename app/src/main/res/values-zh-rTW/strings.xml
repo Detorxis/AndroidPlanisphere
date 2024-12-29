@@ -108,6 +108,7 @@
     <string name="nextFullMoon">下一次滿月</string>
     <string name="nextNewMoon">下一次新月</string>
     <string name="adjustTimeVolume">用音量鍵調整時間</string>
+    <string name="viewDirection">視線 (0° 南; 90° 東; 180° 北):</string>
 
     <string name="about_text"><![CDATA[
 <h1>星座盤</h1>

@@ -59,6 +59,7 @@ public class Settings
     private boolean mOnlyVisiblePlanets;
     private float mFontScale;
     private boolean mAdjustTimeVolume;
+    private int mViewDirection;
     private static final int LANG_SYSDEFAULT_INTERNAL = 9999; // stored in SharedPreferences
     private static final int LANG_SYSDEFAULT_IDX = 9;
 
@@ -111,6 +112,7 @@ public class Settings
         mOnlyVisiblePlanets = mPref.getBoolean("onlyVisiblePlanets", false);
         mFontScale = mPref.getFloat("fontScale", 1.0f);
         mAdjustTimeVolume = mPref.getBoolean("adjustTimeVolume", false);
+        mViewDirection = mPref.getInt("viewDirection", 0);
 
         String storedVersion = mPref.getString("version", "");
         String currentVersion = BuildConfig.VERSION_NAME;
@@ -165,6 +167,7 @@ public class Settings
         spe.putFloat("fontScale", mFontScale);
         spe.putBoolean("adjustTimeVolume", mAdjustTimeVolume);
         spe.putString("version", BuildConfig.VERSION_NAME);
+        spe.putInt("viewDirection", mViewDirection);
         spe.apply();
     }
 
@@ -538,6 +541,17 @@ public class Settings
     public void setAdjustTimeVolume(boolean adjustTimeVolume)
     {
         mAdjustTimeVolume = adjustTimeVolume;
+        store();
+    }
+
+    public int getViewDirection()
+    {
+        return mViewDirection;
+    }
+
+    public void setViewDirection(int viewDirection)
+    {
+        mViewDirection = viewDirection;
         store();
     }
 }
