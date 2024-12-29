@@ -241,6 +241,7 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.action_time)
         {
+            mTimeOffsetVolume = 0;
             TimeDialog d = new TimeDialog();
             d.show(getSupportFragmentManager(), "TimeDialog");
             return true;
