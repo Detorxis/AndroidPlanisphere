@@ -1,4 +1,4 @@
-And	Andromeda	Chained Maiden	Andromeda	仙女座	Andrómeda	Andromeda	Andromède	Andromeda
+And	Andromeda	Chained Maiden	Andromeda	仙女座	Andrómeda	Andromeda	Andromède	Andromeda  123
 Ant	Antlia	Air Pump	Luftpumpe	唧筒座	La Máquina Neumática	Luftpumpen	Machine Pneumatique	Macchina Pneumatica
 Aps	Apus	Bird of Paradise	Paradiesvogel	天燕座	El Ave del Paraíso	Paradisfuglen	Oiseau de Paradis	Uccello del Paradiso
 Aql	Aquila	Eagle	Adler	天鷹座	El Águila	Ørnen	Aigle	Aquila
